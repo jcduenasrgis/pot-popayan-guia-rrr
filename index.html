@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía RRR – LADM-COL POT Popayán v1</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f4f0; color: #1a1a1a; font-size: 14px; line-height: 1.7; }
+
+  /* ── PORTADA ── */
+  .cover { background: #0f2b4a; color: #fff; padding: 3.5rem 3rem 3rem; }
+  .cover-tag { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #7fb3d9; margin-bottom: 0.75rem; }
+  .cover-title { font-size: 28px; font-weight: 700; line-height: 1.25; margin-bottom: 0.5rem; }
+  .cover-subtitle { font-size: 15px; color: #a8c8e8; margin-bottom: 2rem; }
+  .cover-meta { display: flex; gap: 2rem; flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 1.25rem; font-size: 12px; color: #8ab5d5; }
+  .cover-meta span strong { display: block; color: #fff; font-size: 13px; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 900px; margin: auto; padding: 2rem 2rem 4rem; }
+
+  /* ── SECCIONES ── */
+  .section { margin-bottom: 2.5rem; }
+  .section-label { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #7fb3d9; margin-bottom: 0.25rem; }
+  .section-title { font-size: 18px; font-weight: 700; color: #0f2b4a; margin-bottom: 1rem; border-bottom: 2px solid #0f2b4a; padding-bottom: 0.4rem; }
+  .section-intro { color: #444; margin-bottom: 1.25rem; }
+
+  /* ── TARJETAS RRR CONCEPTO ── */
+  .rrr-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+  .rrr-card { border-radius: 10px; padding: 1.25rem; border-left: 5px solid; }
+  .rrr-card.derecho   { background: #ddeaf7; border-color: #2c6fad; }
+  .rrr-card.restriccion { background: #faebd4; border-color: #c07a10; }
+  .rrr-card.responsabilidad { background: #d4f0e6; border-color: #1a9068; }
+  .rrr-card h3 { font-size: 13px; font-weight: 700; margin-bottom: 0.4rem; }
+  .rrr-card.derecho h3 { color: #1a4d80; }
+  .rrr-card.restriccion h3 { color: #7a4b08; }
+  .rrr-card.responsabilidad h3 { color: #0d5c42; }
+  .rrr-card .rrr-clase { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.7; margin-bottom: 0.5rem; }
+  .rrr-card p { font-size: 13px; color: #333; }
+  .rrr-card .rrr-keyword { font-weight: 700; }
+
+  /* ── MODELO DIAGRAMA TEXTO ── */
+  .model-box { background: #fff; border: 0.5px solid #ddd; border-radius: 10px; padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; }
+  .model-box h4 { font-size: 12px; font-weight: 700; color: #0f2b4a; margin-bottom: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase; }
+  .class-row { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.6rem; flex-wrap: wrap; }
+  .class-name { font-family: 'Courier New', monospace; font-size: 12px; font-weight: 700; background: #0f2b4a; color: #fff; padding: 2px 8px; border-radius: 4px; white-space: nowrap; flex-shrink: 0; }
+  .class-name.ext { background: #2c6fad; }
+  .class-name.uab { background: #c07a10; }
+  .class-name.ue  { background: #1a9068; }
+  .class-attrs { font-size: 12px; color: #555; }
+  .attr-tag { display: inline-block; background: #f0ede8; border: 0.5px solid #d5d2cb; border-radius: 3px; padding: 1px 6px; font-family: 'Courier New', monospace; font-size: 11px; margin: 2px 2px 2px 0; }
+  .attr-tag.mandatory { border-color: #c07a10; color: #7a4b08; background: #faebd4; }
+
+  /* ── TABLA EJEMPLOS ── */
+  .ex-table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin-bottom: 0.5rem; }
+  .ex-table th { background: #0f2b4a; color: #fff; padding: 7px 10px; text-align: left; font-weight: 600; font-size: 11px; letter-spacing: 0.03em; }
+  .ex-table td { padding: 7px 10px; border-bottom: 0.5px solid #e8e5de; vertical-align: top; }
+  .ex-table tbody tr:nth-child(even) td { background: #faf9f6; }
+  .badge { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 3px; white-space: nowrap; }
+  .badge-d  { background: #ddeaf7; color: #1a4d80; }
+  .badge-r  { background: #faebd4; color: #7a4b08; }
+  .badge-re { background: #d4f0e6; color: #0d5c42; }
+  .badge-geo-pol { background: #e8e4f8; color: #3a2888; }
+  .badge-geo-lin { background: #f8ddd5; color: #7a2510; }
+  .badge-geo-pun { background: #f0f7e0; color: #3a5a0a; }
+  .norm-ref { font-size: 11px; color: #888; font-style: italic; }
+
+  /* ── FICHA ── */
+  .ficha { background: #fff; border: 1.5px solid #0f2b4a; border-radius: 10px; padding: 0; overflow: hidden; margin-top: 1rem; }
+  .ficha-header { background: #0f2b4a; color: #fff; padding: 0.75rem 1.25rem; font-size: 13px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; }
+  .ficha-version { font-size: 10px; opacity: 0.7; }
+  .ficha-body { padding: 1.25rem; }
+  .ficha-section { margin-bottom: 1.25rem; }
+  .ficha-section-title { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; padding: 4px 10px; border-radius: 4px; margin-bottom: 0.65rem; display: inline-block; }
+  .ficha-section-title.sec-id   { background: #0f2b4a; }
+  .ficha-section-title.sec-d    { background: #2c6fad; }
+  .ficha-section-title.sec-r    { background: #c07a10; }
+  .ficha-section-title.sec-re   { background: #1a9068; }
+  .ficha-section-title.sec-sig  { background: #5c42cc; }
+  .field-row { display: grid; grid-template-columns: 160px 1fr; gap: 6px 12px; margin-bottom: 6px; align-items: start; }
+  .field-label { font-size: 11.5px; font-weight: 600; color: #555; }
+  .field-input { border-bottom: 1px solid #ccc; min-height: 20px; font-size: 12px; color: #999; font-style: italic; }
+  .field-input.mandatory { border-bottom-color: #c07a10; }
+  .field-select { font-size: 11px; color: #777; }
+  .field-note { font-size: 10.5px; color: #aaa; grid-column: 2; margin-top: -4px; }
+
+  /* ── TIPS ── */
+  .tip-box { background: #fff8e6; border-left: 4px solid #c07a10; border-radius: 0 8px 8px 0; padding: 0.85rem 1.1rem; margin: 1rem 0; font-size: 13px; color: #5a3d00; }
+  .tip-box strong { display: block; margin-bottom: 3px; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .warn-box { background: #fff0f0; border-left: 4px solid #b03a1a; border-radius: 0 8px 8px 0; padding: 0.85rem 1.1rem; margin: 1rem 0; font-size: 13px; color: #6a1a0a; }
+  .warn-box strong { display: block; margin-bottom: 3px; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; }
+
+  /* ── UAB MAPA ── */
+  .uab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem; margin-bottom: 1.5rem; }
+  .uab-card { background: #fff; border: 0.5px solid #ddd; border-radius: 8px; padding: 0.9rem; }
+  .uab-card-title { font-size: 12px; font-weight: 700; color: #0f2b4a; margin-bottom: 0.35rem; }
+  .uab-card-class { font-family: 'Courier New', monospace; font-size: 10px; background: #f0ede8; padding: 1px 5px; border-radius: 3px; color: #555; }
+  .uab-card-desc { font-size: 11.5px; color: #666; margin-top: 0.4rem; line-height: 1.4; }
+
+  /* ── FLUJO ── */
+  .flujo { display: flex; gap: 0; flex-wrap: wrap; margin: 1rem 0 1.5rem; }
+  .flujo-step { flex: 1; min-width: 130px; text-align: center; padding: 0.9rem 0.5rem; background: #fff; border: 0.5px solid #ddd; position: relative; }
+  .flujo-step:not(:last-child)::after { content: '→'; position: absolute; right: -12px; top: 50%; transform: translateY(-50%); font-size: 16px; color: #aaa; z-index: 1; }
+  .flujo-step:first-child { border-radius: 8px 0 0 8px; }
+  .flujo-step:last-child  { border-radius: 0 8px 8px 0; }
+  .flujo-num { font-size: 18px; font-weight: 700; color: #0f2b4a; }
+  .flujo-lbl { font-size: 11px; color: #666; margin-top: 3px; line-height: 1.3; }
+
+  /* ── FOOTER ── */
+  .doc-footer { border-top: 0.5px solid #d5d2cb; margin-top: 2rem; padding-top: 1rem; font-size: 11px; color: #aaa; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px; }
+
+  @media print { body { background: #fff; } .container { padding: 1rem; } }
+</style>
+</head>
+<body>
+
+<!-- PORTADA -->
+<div class="cover">
+  <div class="cover-tag">Municipio de Popayán · Revisión y Ajuste POT · LADM-COL v2.0.0</div>
+  <div class="cover-title">Guía para el Diligenciamiento de RRR<br>en el Modelo LADM-COL POT</div>
+  <div class="cover-subtitle">Derechos, Restricciones y Responsabilidades — De lo general a lo específico</div>
+  <div class="cover-meta">
+    <span><strong>Versión</strong> Borrador v1 — 2025</span>
+    <span><strong>Coordinación técnica</strong> Ing. Juan Carlos Dueñas Ramírez</span>
+    <span><strong>Modelo base</strong> LADM_COL_v_2_0_0_Ext_POT (INTERLIS 2.3)</span>
+    <span><strong>Dirigido a</strong> Temáticos y SIG de apoyo</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ══════════════════════════════════════
+       SECCIÓN 1 — CONTEXTO
+  ══════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">Sección 1</div>
+    <div class="section-title">¿Por qué necesitamos los RRR?</div>
+    <p class="section-intro">El modelo LADM-COL no almacena capas sueltas. Almacena <strong>relaciones jurídicas y normativas entre agentes y territorio</strong>. Sin los RRR, una capa de humedales o de suelo de expansión es solo geometría — no puede ser usada en gestión territorial, en licenciamiento, ni en la consulta ciudadana del POT.</p>
+    <p class="section-intro">Cada temático es <strong>el único custodio</strong> de la norma que respalda su capa. El modelo no puede inferirlo. La ficha RRR es el acto formal de documentar ese respaldo.</p>
+
+    <div class="flujo">
+      <div class="flujo-step"><div class="flujo-num">①</div><div class="flujo-lbl">Temático identifica capa y su norma fuente</div></div>
+      <div class="flujo-step"><div class="flujo-num">②</div><div class="flujo-lbl">Diligencia ficha RRR por cada UAB/UE</div></div>
+      <div class="flujo-step"><div class="flujo-num">③</div><div class="flujo-lbl">SIG verifica coherencia geométrica</div></div>
+      <div class="flujo-step"><div class="flujo-num">④</div><div class="flujo-lbl">Carga al modelo intermedio LADM</div></div>
+      <div class="flujo-step"><div class="flujo-num">⑤</div><div class="flujo-lbl">Validación final y entrega POT</div></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SECCIÓN 2 — QUÉ SON LOS RRR
+  ══════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">Sección 2</div>
+    <div class="section-title">Los tres tipos de RRR en el modelo</div>
+    <p class="section-intro">El modelo define tres clases que heredan de <code>COL_DRR</code> (clase base del núcleo LADM). En la extensión POT colombiana estas clases son:</p>
+
+    <div class="rrr-grid">
+      <div class="rrr-card derecho">
+        <div class="rrr-clase">Clase: POT_Derecho</div>
+        <h3>Derecho (Right)</h3>
+        <p>Facultad normativa que tiene un <span class="rrr-keyword">agente</span> (entidad, comunidad, propietario) para <span class="rrr-keyword">usar, aprovechar o desarrollar</span> una unidad espacial del POT.</p>
+        <p style="margin-top:0.5rem; font-size:12px; color:#1a4d80;">Pregunta clave: <em>¿quién tiene derecho a qué, sobre este polígono?</em></p>
+      </div>
+      <div class="rrr-card restriccion">
+        <div class="rrr-clase">Clase: POT_Restriccion</div>
+        <h3>Restricción (Restriction)</h3>
+        <p>Limitación normativa que <span class="rrr-keyword">condiciona o prohíbe</span> ciertos usos sobre una unidad espacial. Viaja con el territorio, no con la persona.</p>
+        <p style="margin-top:0.5rem; font-size:12px; color:#7a4b08;">Pregunta clave: <em>¿qué NO se puede hacer aquí, y por qué norma?</em></p>
+      </div>
+      <div class="rrr-card responsabilidad">
+        <div class="rrr-clase">Clase: POT_Responsabilidad</div>
+        <h3>Responsabilidad (Responsibility)</h3>
+        <p>Obligación de <span class="rrr-keyword">ejecutar una acción</span> sobre el territorio. No prohíbe — <em>obliga a hacer</em>: restaurar, mantener, garantizar acceso.</p>
+        <p style="margin-top:0.5rem; font-size:12px; color:#0d5c42;">Pregunta clave: <em>¿quién está obligado a hacer qué, en este lugar?</em></p>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <strong>💡 Truco para distinguirlos</strong>
+      Un retiro obligatorio de 30 m a un cuerpo de agua = <strong>Restricción</strong> (prohíbe construir). La obligación del propietario de reforestar esa franja = <strong>Responsabilidad</strong> (obliga a actuar). El derecho del municipio a adquirir predios en esa franja por utilidad pública = <strong>Derecho</strong>.
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SECCIÓN 3 — ESTRUCTURA DEL MODELO
+  ══════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">Sección 3</div>
+    <div class="section-title">Estructura del modelo: UAB, UE y RRR</div>
+    <p class="section-intro">El modelo LADM organiza el territorio en dos objetos principales que siempre van juntos: la <strong>Unidad Administrativa Básica (UAB)</strong> — que contiene los atributos normativos — y la <strong>Unidad Espacial (UE)</strong> — que contiene la geometría. Los RRR se vinculan a la UAB a través de la asociación <code>col_baunitRrr</code>.</p>
+
+    <div class="model-box">
+      <h4>Clases UAB del modelo extendido POT (lo que el temático debe diligenciar)</h4>
+      <div class="uab-grid">
+        <div class="uab-card">
+          <div class="uab-card-title">Clasificación del Suelo</div>
+          <div class="uab-card-class">POT_UAB_ClasificacionSuelo</div>
+          <div class="uab-card-desc">Urbano / Rural / Expansión urbana. Atributo obligatorio: <em>Tipo_Clasificacion_Suelo</em>.</div>
+        </div>
+        <div class="uab-card">
+          <div class="uab-card-title">Zonificación Suelo Rural</div>
+          <div class="uab-card-class">POT_UAB_ZonificacionSueloRural</div>
+          <div class="uab-card-desc">Incluye uso principal, categoría rural, usos compatibles, condicionados y prohibidos.</div>
+        </div>
+        <div class="uab-card">
+          <div class="uab-card-title">Áreas de Actividad</div>
+          <div class="uab-card-class">POT_UAB_AreasActividad</div>
+          <div class="uab-card-desc">Uso principal urbano: Residencial, Comercial, Industrial, Institucional, Mixto, etc.</div>
+        </div>
+        <div class="uab-card">
+          <div class="uab-card-title">Suelo de Protección Urbano</div>
+          <div class="uab-card-class">POT_UAB_SueloProteccionUrbano</div>
+          <div class="uab-card-desc">Ambiental, Infraestructura, Patrimonio, Riesgo no mitigable.</div>
+        </div>
+        <div class="uab-card">
+          <div class="uab-card-title">Tratamiento Urbanístico</div>
+          <div class="uab-card-class">POT_UAB_TratamientoUrbanistico</div>
+          <div class="uab-card-desc">Desarrollo, Consolidación, Renovación, Conservación, Mejoramiento Integral.</div>
+        </div>
+        <div class="uab-card">
+          <div class="uab-card-title">Sistemas Generales</div>
+          <div class="uab-card-class">POT_UAB_SistemasGenerales</div>
+          <div class="uab-card-desc">Equipamientos, Espacio Público, Servicios Públicos, Vías. Estado: Existente / Proyectado.</div>
+        </div>
+        <div class="uab-card">
+          <div class="uab-card-title">Zonificación de Amenaza</div>
+          <div class="uab-card-class">POT_UAB_ZonificacionAmenaza</div>
+          <div class="uab-card-desc">Fenómeno + Categoría (Alta / Media / Baja). Dcto. 1077/2015.</div>
+        </div>
+        <div class="uab-card">
+          <div class="uab-card-title">Área en Condición de Amenaza</div>
+          <div class="uab-card-class">POT_UAB_AreaCondicionAmenaza</div>
+          <div class="uab-card-desc">Amenaza alta/media + desarrollo previsto. Incluye medida de intervención.</div>
+        </div>
+        <div class="uab-card">
+          <div class="uab-card-title">Área en Condición de Riesgo</div>
+          <div class="uab-card-class">POT_UAB_AreaCondicionRiesgo</div>
+          <div class="uab-card-desc">Amenaza alta con elementos expuestos ya urbanizados / edificados.</div>
+        </div>
+        <div class="uab-card">
+          <div class="uab-card-title">Centro Poblado Rural</div>
+          <div class="uab-card-class">POT_UAB_CentroPobladoRural</div>
+          <div class="uab-card-desc">≥20 viviendas contiguas en zona rural. Requiere Nombre y Código.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="warn-box">
+      <strong>⚠ Importante — restricción de integridad del modelo</strong>
+      Todas las clases UAB del POT tienen la restricción: <code>MANDATORY CONSTRAINT Tipo == #Vivienda_Ciudad_Territorio</code>. Esto significa que el campo <em>Tipo</em> heredado de COL_UnidadAdministrativaBasica debe ser siempre <strong>Vivienda_Ciudad_Territorio</strong>. El SIG de apoyo debe verificar esto en la carga.
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SECCIÓN 4 — EJEMPLOS POR DIMENSIÓN
+  ══════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">Sección 4</div>
+    <div class="section-title">Ejemplos de RRR por dimensión — contexto Popayán</div>
+
+    <!-- AMBIENTAL -->
+    <h3 style="font-size:14px; font-weight:700; color:#0f2b4a; margin: 1.25rem 0 0.6rem; padding-left:0.75rem; border-left:4px solid #1a9068;">Dimensión Ambiental</h3>
+    <table class="ex-table">
+      <thead>
+        <tr>
+          <th>Capa / UAB en el modelo</th>
+          <th>Tipo RRR</th>
+          <th>Descripción del RRR</th>
+          <th>Norma fuente</th>
+          <th>Agente</th>
+          <th>Geometría</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Humedales periurbanos</strong><br><span class="norm-ref">POT_UAB_SueloProteccionUrbano (Ambiental)</span></td>
+          <td><span class="badge badge-r">Restricción</span></td>
+          <td>Prohibición de relleno, canalización o construcción en ronda de 30 m</td>
+          <td class="norm-ref">Dcto. 2245/2017 + Acuerdo POT</td>
+          <td>CRC / Alcaldía</td>
+          <td><span class="badge badge-geo-pol">Polígono</span></td>
+        </tr>
+        <tr>
+          <td><strong>Cerros tutelares</strong><br><span class="norm-ref">POT_UAB_SueloProteccionUrbano (Ambiental)</span></td>
+          <td><span class="badge badge-r">Restricción</span></td>
+          <td>No urbanizable – protección paisajística y de recarga hídrica</td>
+          <td class="norm-ref">Acuerdo POT Popayán / PBOT</td>
+          <td>Alcaldía</td>
+          <td><span class="badge badge-geo-pol">Polígono</span></td>
+        </tr>
+        <tr>
+          <td><strong>Corredores ecológicos</strong><br><span class="norm-ref">POT_UAB_ZonificacionSueloRural (Conservacion_Proteccion_Ambiental)</span></td>
+          <td><span class="badge badge-re">Responsabilidad</span></td>
+          <td>Restauración activa de cobertura vegetal por propietario / operador</td>
+          <td class="norm-ref">Plan de Manejo CRC – Res. CRC</td>
+          <td>CRC</td>
+          <td><span class="badge badge-geo-pol">Polígono</span></td>
+        </tr>
+        <tr>
+          <td><strong>Zonas de recarga acuífero</strong><br><span class="norm-ref">POT_UAB_ZonificacionSueloRural (Areas_Importancia_Ecosistemica)</span></td>
+          <td><span class="badge badge-r">Restricción</span></td>
+          <td>Limitación de usos extractivos e impermeabilización de superficies</td>
+          <td class="norm-ref">Res. 1096/2000 + PGIRH CRC</td>
+          <td>CRC</td>
+          <td><span class="badge badge-geo-pol">Polígono</span></td>
+        </tr>
+        <tr>
+          <td><strong>Áreas SINAP (PNN Puracé)</strong><br><span class="norm-ref">POT_UAB_ZonificacionSueloRural (Areas_SINAP)</span></td>
+          <td><span class="badge badge-r">Restricción</span></td>
+          <td>Prohibición total de aprovechamiento productivo en zona intangible</td>
+          <td class="norm-ref">Dcto. 2372/2010 + PMA PNN Puracé</td>
+          <td>Parques Nacionales / CRC</td>
+          <td><span class="badge badge-geo-pol">Polígono</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- SUELOS -->
+    <h3 style="font-size:14px; font-weight:700; color:#0f2b4a; margin: 1.5rem 0 0.6rem; padding-left:0.75rem; border-left:4px solid #c07a10;">Dimensión Suelos</h3>
+    <table class="ex-table">
+      <thead>
+        <tr>
+          <th>Capa / UAB en el modelo</th>
+          <th>Tipo RRR</th>
+          <th>Descripción del RRR</th>
+          <th>Norma fuente</th>
+          <th>Agente</th>
+          <th>Geometría</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Suelo de expansión urbana</strong><br><span class="norm-ref">POT_UAB_ClasificacionSuelo (Expansion_Urbana)</span></td>
+          <td><span class="badge badge-d">Derecho</span></td>
+          <td>Derecho a urbanizar condicionado a plan parcial aprobado por el municipio</td>
+          <td class="norm-ref">Ley 388/1997 Art. 31</td>
+          <td>Alcaldía Popayán</td>
+          <td><span class="badge badge-geo-pol">Polígono</span></td>
+        </tr>
+        <tr>
+          <td><strong>Suelo rural suburbano</strong><br><span class="norm-ref">POT_UAB_ZonificacionSueloRural (Suburbano)</span></td>
+          <td><span class="badge badge-r">Restricción</span></td>
+          <td>Densidad máxima 1 viv/ha en corredor vial suburbano</td>
+          <td class="norm-ref">Dcto. 3600/2007 + POT vigente</td>
+          <td>Alcaldía / INVÍAS</td>
+          <td><span class="badge badge-geo-pol">Polígono</span></td>
+        </tr>
+        <tr>
+          <td><strong>Suelo de protección – riesgo no mitigable</strong><br><span class="norm-ref">POT_UAB_SueloProteccionUrbano (Riesgo_No_Mitigable)</span></td>
+          <td><span class="badge badge-r">Restricción</span></td>
+          <td>No apto para uso residencial ni industrial; prohibición permanente</td>
+          <td class="norm-ref">Ley 388/1997 + Dcto. 1077/2015</td>
+          <td>Alcaldía / UNGRD</td>
+          <td><span class="badge badge-geo-pol">Polígono</span></td>
+        </tr>
+        <tr>
+          <td><strong>Cesiones urbanísticas obligatorias</strong><br><span class="norm-ref">POT_UAB_TratamientoUrbanistico (Desarrollo)</span></td>
+          <td><span class="badge badge-re">Responsabilidad</span></td>
+          <td>Entrega gratuita al municipio de áreas para espacio público en procesos de urbanización</td>
+          <td class="norm-ref">Dcto. 1077/2015 Art. 2.2.3.1.4</td>
+          <td>Municipio de Popayán</td>
+          <td><span class="badge badge-geo-pol">Polígono</span></td>
+        </tr>
+        <tr>
+          <td><strong>Patrimonio cultural rural</strong><br><span class="norm-ref">POT_UAB_ZonificacionSueloRural (Patrimonio_Cultural)</span></td>
+          <td><span class="badge badge-r">Restricción</span></td>
+          <td>Condicionamiento de intervenciones físicas a concepto previo del MinCultura</td>
+          <td class="norm-ref">Ley 1185/2008 + Dcto. 763/2009</td>
+          <td>MinCultura / Alcaldía</td>
+          <td><span class="badge badge-geo-pol">Polígono</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- FUNCIONAL -->
+    <h3 style="font-size:14px; font-weight:700; color:#0f2b4a; margin: 1.5rem 0 0.6rem; padding-left:0.75rem; border-left:4px solid #5c42cc;">Dimensión Funcional</h3>
+    <table class="ex-table">
+      <thead>
+        <tr>
+          <th>Capa / UAB en el modelo</th>
+          <th>Tipo RRR</th>
+          <th>Descripción del RRR</th>
+          <th>Norma fuente</th>
+          <th>Agente</th>
+          <th>Geometría</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Vías arteriales proyectadas</strong><br><span class="norm-ref">POT_UAB_SistemasGenerales (Vias - Principal) Estado: Proyectado</span></td>
+          <td><span class="badge badge-r">Restricción</span></td>
+          <td>Afectación vial – prohibición de construcción en faja de reserva vial</td>
+          <td class="norm-ref">POT + Ley 1228/2008 (fajas viales)</td>
+          <td>Alcaldía / INVÍAS</td>
+          <td><span class="badge badge-geo-lin">Línea</span></td>
+        </tr>
+        <tr>
+          <td><strong>Equipamientos de salud existentes</strong><br><span class="norm-ref">POT_UAB_SistemasGenerales (Equipamientos - Salud) Estado: Existente</span></td>
+          <td><span class="badge badge-d">Derecho</span></td>
+          <td>Uso institucional exclusivo de salud; no susceptible de cambio de uso sin aprobación</td>
+          <td class="norm-ref">POT Popayán / Ley 9/1989</td>
+          <td>Alcaldía / ESE Municipal</td>
+          <td><span class="badge badge-geo-pol">Polígono</span></td>
+        </tr>
+        <tr>
+          <td><strong>Zonas de amenaza sísmica alta</strong><br><span class="norm-ref">POT_UAB_ZonificacionAmenaza (Sismica – Alta)</span></td>
+          <td><span class="badge badge-re">Responsabilidad</span></td>
+          <td>Reforzamiento estructural obligatorio según NSR-10 para nuevas edificaciones y adecuaciones</td>
+          <td class="norm-ref">NSR-10 / SGC / Dcto. 1077/2015</td>
+          <td>Propietario / Curador Urbano</td>
+          <td><span class="badge badge-geo-pol">Polígono</span></td>
+        </tr>
+        <tr>
+          <td><strong>Redes de acueducto proyectadas</strong><br><span class="norm-ref">POT_UAB_SistemasGenerales (Servicios_Publicos - Acueducto) Estado: Proyectado</span></td>
+          <td><span class="badge badge-re">Responsabilidad</span></td>
+          <td>EMCASERVICIOS debe garantizar extensión de cobertura en nuevas habilitaciones urbanas</td>
+          <td class="norm-ref">Res. CRA + Ley 142/1994</td>
+          <td>EMCASERVICIOS</td>
+          <td><span class="badge badge-geo-lin">Línea</span></td>
+        </tr>
+        <tr>
+          <td><strong>Espacio público estructurante</strong><br><span class="norm-ref">POT_UAB_SistemasGenerales (Espacio_Publico - Elemento_Constitutivo)</span></td>
+          <td><span class="badge badge-d">Derecho</span></td>
+          <td>Derecho ciudadano al uso y goce del espacio público; inalienable, imprescriptible e inembargable</td>
+          <td class="norm-ref">Const. Art. 82 + Ley 388/1997 Art. 5</td>
+          <td>Municipio / Ciudadanía</td>
+          <td><span class="badge badge-geo-pol">Polígono</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SECCIÓN 5 — FUENTE ADMINISTRATIVA
+  ══════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">Sección 5</div>
+    <div class="section-title">La Fuente Administrativa: el respaldo normativo en el modelo</div>
+    <p class="section-intro">Todo RRR debe estar respaldado por al menos una <strong>POT_FuenteAdministrativa</strong>. Esta clase vincula el RRR con el acto administrativo que lo origina. Sin fuente, el modelo rechaza el registro.</p>
+
+    <div class="model-box">
+      <h4>Atributos de POT_FuenteAdministrativa (lo que se debe llenar)</h4>
+      <div class="class-row">
+        <span class="class-name ext">POT_FuenteAdministrativa</span>
+        <div class="class-attrs">
+          <span class="attr-tag mandatory">Tipo [MANDATORY]</span>
+          <span class="attr-tag mandatory">Tipo_POT [POT/PBOT/EOT]</span>
+          <span class="attr-tag">Numero_Fuente [TEXT*150]</span>
+          <span class="attr-tag">Tipo_Revision</span>
+          <span class="attr-tag">Estado_Disponibilidad</span>
+          <span class="attr-tag">Fecha_Documento_Fuente</span>
+          <span class="attr-tag">URL</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <strong>Ejemplos de fuentes administrativas válidas para Popayán</strong>
+      <ul style="margin-top:0.5rem; padding-left:1.2rem; font-size:13px; line-height:2;">
+        <li><strong>Acuerdo</strong> Municipal (aprobación del POT) → Tipo: <em>Documento_Publico / Acuerdo</em></li>
+        <li><strong>Decreto</strong> reglamentario del alcalde → Tipo: <em>Documento_Publico / Decreto</em></li>
+        <li><strong>Resolución CRC</strong> (autoridad ambiental) → Tipo: <em>Documento_Publico</em></li>
+        <li><strong>Ley nacional</strong> (Ley 388, Ley 1228, etc.) → Tipo: <em>Documento_Publico</em></li>
+        <li><strong>Concertación con autoridades ambientales</strong> → Tipo: <em>Acta_Concertacion</em></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SECCIÓN 6 — FICHA TIPO
+  ══════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">Sección 6</div>
+    <div class="section-title">Ficha de diligenciamiento RRR — Versión 1</div>
+    <p class="section-intro">Esta ficha debe ser completada por el <strong>temático responsable</strong> de cada capa antes de la sesión de verificación con el SIG de apoyo. Un formulario por cada clase UAB entregada.</p>
+
+    <div class="ficha">
+      <div class="ficha-header">
+        <span>FICHA DE DOCUMENTACIÓN RRR — POT POPAYÁN</span>
+        <span class="ficha-version">v1 · 2025</span>
+      </div>
+      <div class="ficha-body">
+
+        <!-- IDENTIFICACIÓN -->
+        <div class="ficha-section">
+          <div class="ficha-section-title sec-id">A. Identificación de la capa</div>
+          <div class="field-row">
+            <div class="field-label">Nombre de la capa *</div>
+            <div class="field-input mandatory">ej. Humedales_periurbanos_v3</div>
+          </div>
+          <div class="field-row">
+            <div class="field-label">Clase UAB del modelo *</div>
+            <div class="field-input mandatory field-select">POT_UAB_SueloProteccionUrbano / ZonificacionSueloRural / SistemasGenerales / …</div>
+          </div>
+          <div class="field-row">
+            <div class="field-label">Dimensión temática *</div>
+            <div class="field-input mandatory field-select">Ambiental &nbsp;/&nbsp; Suelos &nbsp;/&nbsp; Funcional</div>
+          </div>
+          <div class="field-row">
+            <div class="field-label">Tipo de geometría *</div>
+            <div class="field-input mandatory field-select">Punto &nbsp;/&nbsp; Línea &nbsp;/&nbsp; Polígono &nbsp;/&nbsp; Multiparte</div>
+          </div>
+          <div class="field-row">
+            <div class="field-label">SRS *</div>
+            <div class="field-input">EPSG:9377 (MAGNA-SIRGAS / CTM-12)</div>
+          </div>
+          <div class="field-row">
+            <div class="field-label">Fuente administrativa *</div>
+            <div class="field-input mandatory">Acuerdo / Decreto / Resolución + número + año</div>
+          </div>
+        </div>
+
+        <!-- DERECHOS -->
+        <div class="ficha-section">
+          <div class="ficha-section-title sec-d">B. Derechos asociados (POT_Derecho)</div>
+          <div class="field-row">
+            <div class="field-label">¿Aplica algún derecho? *</div>
+            <div class="field-input mandatory field-select">Seleccione Sí / No</div>
+          </div>
+          <div class="field-row">
+            <div class="field-label">Descripción del derecho</div>
+            <div class="field-input">Describa el derecho asociado a esta unidad espacial</div>
+          </div>
+          <div class="field-row">
+            <div class="field-label">Agente titular del derecho</div>
+            <div class="field-input">Persona natural / jurídica / entidad pública</div>
+          </div>
+          <div class="field-row">
+            <div class="field-label">Norma que lo sustenta *</div>
+            <div class="field-input mandatory">Ley / Decreto / Acuerdo + número + año</div>
+          </div>
+          <div class="field-row">
+            <div class="field-label">Artículo específico</div>
+            <div class="field-input">ej. Art. 31</div>
+          </div>
+        </div>
+
+        <!-- RESTRICCIONES -->
+        <div class="ficha-section">
+          <div class="ficha-section-title sec-r">C. Restricciones asociadas (POT_Restriccion)</div>
+          <div class="field-row">
+            <div class="field-label">¿Aplica alguna restricción? *</div>
+            <div class="field-input mandatory field-select">Seleccione Sí / No</div>
+          </div>
+          <div class="field-row">
+            <div class="field-label">Descripción de la restricción</div>
+            <div class="field-input">Describa la restricción asociada a esta unidad espacial</div>
+          </div>
+          <div class="field-row">
+            <div class="field-label">Agente que la impone</div>
+            <div class="field-input">Entidad que emitió la norma restrictiva</div>
+          </div>
+          <div class="field-row">
+            <div class="field-label">Norma que la origina *</div>
+            <div class="field-input mandatory">Ley / Decreto / Acuerdo + número + año</div>
+          </div>
+          <div class="field-row">
+            <div class="field-label">Artículo específico</div>
+            <div class="field-input">ej. Art. 14</div>
+          </div>
+          <div class="field-row">
+            <div class="field-label">Vigencia</div>
+            <div class="field-input field-select">Permanente &nbsp;/&nbsp; Temporal — hasta: ___________</div>
+          </div>
+          <div class="field-row">
+            <div class="field-label">Fenómeno (si aplica)</div>
+            <div class="field-input field-select">Movimientos_En_Masa / Inundacion / Sismica / Volcanico / Otro …</div>
+          </div>
+          <div class="field-row">
+            <div class="field-label">Categoría de amenaza (si aplica)</div>
+            <div class="field-input field-select">Alta / Media / Baja</div>
+          </div>
+          <div class="field-row">
+            <div class="field-label">Medida de intervención (si aplica)</div>
+            <div class="field-input field-select">Estudios_Detallados / Restriccion_O_Condicionamiento / Monitoreo_Del_Riesgo / …</div>
+          </div>
+          <div class="field-row">
+            <div class="field-label">Priorización (si aplica)</div>
+            <div class="field-input field-select">Corto_Plazo / Mediano_Plazo / Largo_Plazo</div>
+          </div>
+        </div>
+
+        <!-- RESPONSABILIDADES -->
+        <div class="ficha-section">
+          <div class="ficha-section-title sec-re">D. Responsabilidades asociadas (POT_Responsabilidad)</div>
+          <div class="field-row">
+            <div class="field-label">¿Aplica alguna responsabilidad? *</div>
+            <div class="field-input mandatory field-select">Seleccione Sí / No</div>
+          </div>
+          <div class="field-row">
+            <div class="field-label">Descripción de la obligación</div>
+            <div class="field-input">Describa la responsabilidad asociada a esta unidad espacial</div>
+          </div>
+          <div class="field-row">
+            <div class="field-label">Agente obligado</div>
+            <div class="field-input">Propietario / operador / entidad pública / ESP</div>
+          </div>
+          <div class="field-row">
+            <div class="field-label">Norma que la establece *</div>
+            <div class="field-input mandatory">Ley / Decreto / Acuerdo + número + año</div>
+          </div>
+          <div class="field-row">
+            <div class="field-label">Artículo específico</div>
+            <div class="field-input">ej. Art. 2.2.3.1.4</div>
+          </div>
+          <div class="field-row">
+            <div class="field-label">Plazo o condición</div>
+            <div class="field-input field-select">Corto_Plazo / Mediano_Plazo / Largo_Plazo</div>
+          </div>
+        </div>
+
+        <!-- VERIFICACIÓN SIG -->
+        <div class="ficha-section">
+          <div class="ficha-section-title sec-sig">F. Verificación SIG de apoyo (diligencia el SIG, no el temático)</div>
+          <div class="field-row">
+            <div class="field-label">Estado verificación SIG *</div>
+            <div class="field-input mandatory field-select">Pendiente revisión SIG / Aprobado / Devuelto con observaciones</div>
+          </div>
+          <div class="field-row">
+            <div class="field-label">Observaciones geométricas</div>
+            <div class="field-input" style="min-height:30px">Errores de topología, superposición, vacíos…</div>
+          </div>
+          <div class="field-row">
+            <div class="field-label">Observaciones de atributos</div>
+            <div class="field-input" style="min-height:30px">Campos vacíos, valores fuera de dominio…</div>
+          </div>
+          <div class="field-row">
+            <div class="field-label">Estado de carga al modelo *</div>
+            <div class="field-input mandatory field-select">Pendiente / En revisión / Aprobado para carga / Cargado al modelo</div>
+          </div>
+          <div class="field-row">
+            <div class="field-label">Revisado por (SIG)</div>
+            <div class="field-input">Nombre del técnico SIG + fecha</div>
+          </div>
+        </div>
+
+        <div style="font-size:11px; color:#aaa; margin-top:0.75rem; border-top: 0.5px solid #eee; padding-top:0.6rem;">
+          Diligenciado por: __________________________ &nbsp;|&nbsp; Cargo: _____________________ &nbsp;|&nbsp; Fecha: ____________
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SECCIÓN 7 — DIAGRAMA UML
+  ══════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">Sección 7</div>
+    <div class="section-title">Diagrama de relaciones — LADM-COL POT (modelo extendido)</div>
+    <p class="section-intro">El diagrama muestra las cinco asociaciones clave del modelo con sus cardinalidades exactas extraídas del archivo <code>LADM_COL_v_2_0_0_Ext_POT.ili</code>. Las clases en gris son del núcleo LADM heredado; las de color son las clases POT específicas que el temático y el SIG deben operar.</p>
+
+    <div style="background:#fff;border:0.5px solid #d5d2cb;border-radius:10px;padding:1.5rem;margin:1rem 0;overflow-x:auto;">
+      <svg width="100%" viewBox="0 0 680 720" role="img" xmlns="http://www.w3.org/2000/svg">
+        <title>Diagrama UML LADM-COL POT — relaciones UAB, UE, RRR, Fuente e Interesado</title>
+        <desc>Diagrama estructural del modelo LADM-COL v2.0.0 extensión POT mostrando las clases principales y sus asociaciones con cardinalidades exactas del .ili</desc>
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="#888" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+        </defs>
+
+        <!-- ── FILA 1: clases núcleo (gris) ── -->
+        <rect x="40" y="40" width="150" height="52" rx="6" fill="#f0ede8" stroke="#aaa" stroke-width="0.5"/>
+        <text x="115" y="62" text-anchor="middle" font-size="13" font-weight="600" fill="#444" font-family="Segoe UI,sans-serif">COL_DRR</text>
+        <text x="115" y="80" text-anchor="middle" font-size="11" fill="#777" font-family="Segoe UI,sans-serif">Clase base RRR</text>
+
+        <rect x="265" y="40" width="150" height="52" rx="6" fill="#f0ede8" stroke="#aaa" stroke-width="0.5"/>
+        <text x="340" y="62" text-anchor="middle" font-size="13" font-weight="600" fill="#444" font-family="Segoe UI,sans-serif">COL_BAUnit</text>
+        <text x="340" y="80" text-anchor="middle" font-size="11" fill="#777" font-family="Segoe UI,sans-serif">Unidad admin. básica</text>
+
+        <rect x="490" y="40" width="160" height="52" rx="6" fill="#f0ede8" stroke="#aaa" stroke-width="0.5"/>
+        <text x="570" y="62" text-anchor="middle" font-size="13" font-weight="600" fill="#444" font-family="Segoe UI,sans-serif">COL_SpatialUnit</text>
+        <text x="570" y="80" text-anchor="middle" font-size="11" fill="#777" font-family="Segoe UI,sans-serif">Unidad espacial</text>
+
+        <!-- ── Líneas herencia desde núcleo (punteadas) ── -->
+        <line x1="80"  y1="92" x2="79"  y2="168" stroke="#bbb" stroke-width="0.5" stroke-dasharray="4 3"/>
+        <line x1="115" y1="92" x2="210" y2="168" stroke="#bbb" stroke-width="0.5" stroke-dasharray="4 3"/>
+        <line x1="150" y1="92" x2="362" y2="168" stroke="#bbb" stroke-width="0.5" stroke-dasharray="4 3"/>
+        <line x1="340" y1="92" x2="240" y2="295" stroke="#bbb" stroke-width="0.5" stroke-dasharray="4 3"/>
+        <line x1="570" y1="92" x2="570" y2="295" stroke="#bbb" stroke-width="0.5" stroke-dasharray="4 3"/>
+
+        <!-- ── FILA 2: POT_RRR (colores por tipo) ── -->
+        <!-- POT_Derecho (azul) -->
+        <rect x="24" y="168" width="110" height="52" rx="6" fill="#ddeaf7" stroke="#2c6fad" stroke-width="1"/>
+        <text x="79" y="190" text-anchor="middle" font-size="13" font-weight="600" fill="#1a4d80" font-family="Segoe UI,sans-serif">POT_Derecho</text>
+        <text x="79" y="208" text-anchor="middle" font-size="11" fill="#2c6fad" font-family="Segoe UI,sans-serif">↑ COL_DRR</text>
+
+        <!-- POT_Restriccion (ámbar) -->
+        <rect x="148" y="168" width="126" height="52" rx="6" fill="#faebd4" stroke="#c07a10" stroke-width="1"/>
+        <text x="211" y="190" text-anchor="middle" font-size="13" font-weight="600" fill="#7a4b08" font-family="Segoe UI,sans-serif">POT_Restriccion</text>
+        <text x="211" y="208" text-anchor="middle" font-size="11" fill="#c07a10" font-family="Segoe UI,sans-serif">↑ COL_DRR</text>
+
+        <!-- POT_Responsabilidad (verde-teal) -->
+        <rect x="288" y="168" width="156" height="52" rx="6" fill="#d4f0e6" stroke="#1a9068" stroke-width="1"/>
+        <text x="366" y="190" text-anchor="middle" font-size="13" font-weight="600" fill="#0d5c42" font-family="Segoe UI,sans-serif">POT_Responsabilidad</text>
+        <text x="366" y="208" text-anchor="middle" font-size="11" fill="#1a9068" font-family="Segoe UI,sans-serif">↑ COL_DRR</text>
+
+        <!-- ── FILA 3A: UAB POT ── -->
+        <rect x="24" y="295" width="430" height="116" rx="8" fill="#faece7" stroke="#b03a1a" stroke-width="1"/>
+        <text x="239" y="318" text-anchor="middle" font-size="13" font-weight="700" fill="#7a2510" font-family="Segoe UI,sans-serif">POT_UAB_* — ↑ COL_BAUnit</text>
+        <text x="44"  y="340" font-size="11" fill="#7a2510" font-family="Segoe UI,sans-serif">· ClasificacionSuelo</text>
+        <text x="44"  y="356" font-size="11" fill="#7a2510" font-family="Segoe UI,sans-serif">· ZonificacionSueloRural</text>
+        <text x="44"  y="372" font-size="11" fill="#7a2510" font-family="Segoe UI,sans-serif">· AreasActividad</text>
+        <text x="44"  y="388" font-size="11" fill="#7a2510" font-family="Segoe UI,sans-serif">· SueloProteccionUrbano</text>
+        <text x="240" y="340" font-size="11" fill="#7a2510" font-family="Segoe UI,sans-serif">· TratamientoUrbanistico</text>
+        <text x="240" y="356" font-size="11" fill="#7a2510" font-family="Segoe UI,sans-serif">· SistemasGenerales</text>
+        <text x="240" y="372" font-size="11" fill="#7a2510" font-family="Segoe UI,sans-serif">· ZonificacionAmenaza</text>
+        <text x="240" y="388" font-size="11" fill="#7a2510" font-family="Segoe UI,sans-serif">· AreaCondicionAmenaza / Riesgo</text>
+
+        <!-- ── FILA 3B: UE POT ── -->
+        <rect x="472" y="295" width="176" height="116" rx="8" fill="#e8e4f8" stroke="#5c42cc" stroke-width="1"/>
+        <text x="560" y="318" text-anchor="middle" font-size="13" font-weight="700" fill="#3a2888" font-family="Segoe UI,sans-serif">POT_UE_*</text>
+        <text x="560" y="336" text-anchor="middle" font-size="11" fill="#5c42cc" font-family="Segoe UI,sans-serif">↑ COL_SpatialUnit</text>
+        <text x="488" y="358" font-size="11" fill="#3a2888" font-family="Segoe UI,sans-serif">· UE_ClasificacionSuelo</text>
+        <text x="488" y="374" font-size="11" fill="#3a2888" font-family="Segoe UI,sans-serif">· UE_ZonificacionSuelo</text>
+        <text x="488" y="390" font-size="11" fill="#3a2888" font-family="Segoe UI,sans-serif">· UE_AreasActividad</text>
+        <text x="488" y="406" font-size="11" fill="#3a2888" font-family="Segoe UI,sans-serif">· UE_SistemasGenerales…</text>
+
+        <!-- ── FILA 4: Fuentes y Municipio ── -->
+        <rect x="24" y="488" width="180" height="70" rx="6" fill="#f0ede8" stroke="#aaa" stroke-width="0.5"/>
+        <text x="114" y="510" text-anchor="middle" font-size="13" font-weight="600" fill="#444" font-family="Segoe UI,sans-serif">POT_FuenteAdmin.</text>
+        <text x="114" y="528" text-anchor="middle" font-size="11" fill="#777" font-family="Segoe UI,sans-serif">Tipo · Tipo_POT</text>
+        <text x="114" y="544" text-anchor="middle" font-size="11" fill="#777" font-family="Segoe UI,sans-serif">Numero_Fuente · URL</text>
+
+        <rect x="220" y="488" width="152" height="70" rx="6" fill="#f0ede8" stroke="#aaa" stroke-width="0.5"/>
+        <text x="296" y="510" text-anchor="middle" font-size="13" font-weight="600" fill="#444" font-family="Segoe UI,sans-serif">POT_FuenteEspacial</text>
+        <text x="296" y="528" text-anchor="middle" font-size="11" fill="#777" font-family="Segoe UI,sans-serif">Escala · Responsable</text>
+        <text x="296" y="544" text-anchor="middle" font-size="11" fill="#777" font-family="Segoe UI,sans-serif">Fecha_Publicacion</text>
+
+        <rect x="388" y="488" width="148" height="70" rx="6" fill="#f0ede8" stroke="#aaa" stroke-width="0.5"/>
+        <text x="462" y="510" text-anchor="middle" font-size="13" font-weight="600" fill="#444" font-family="Segoe UI,sans-serif">POT_Municipio</text>
+        <text x="462" y="528" text-anchor="middle" font-size="11" fill="#777" font-family="Segoe UI,sans-serif">Cod_Departamento</text>
+        <text x="462" y="544" text-anchor="middle" font-size="11" fill="#777" font-family="Segoe UI,sans-serif">Cod_Municipio · Nombre</text>
+
+        <!-- ── ASOCIACIONES con cardinalidades ── -->
+        <!-- col_baunitRrr: UAB 1 —— RRR 1..* -->
+        <path d="M239 220 L239 295" fill="none" stroke="#888" stroke-width="1" marker-end="url(#arr)"/>
+        <text x="156" y="258" font-size="11" fill="#555" font-family="Segoe UI,sans-serif">col_baunitRrr</text>
+        <text x="243" y="234" font-size="11" fill="#333" font-weight="600" font-family="Segoe UI,sans-serif">1</text>
+        <text x="243" y="287" font-size="11" fill="#333" font-weight="600" font-family="Segoe UI,sans-serif">1..*</text>
+
+        <!-- col_ueBaunit: UAB 0..* —— UE 0..* -->
+        <path d="M454 353 L472 353" fill="none" stroke="#888" stroke-width="1" marker-end="url(#arr)"/>
+        <text x="452" y="340" font-size="11" fill="#555" font-family="Segoe UI,sans-serif">col_ueBaunit</text>
+        <text x="436" y="366" font-size="11" fill="#333" font-weight="600" font-family="Segoe UI,sans-serif">0..*</text>
+        <text x="474" y="366" font-size="11" fill="#333" font-weight="600" font-family="Segoe UI,sans-serif">0..*</text>
+
+        <!-- col_rrrFuente: RRR 1..* —— FuenteAdmin 0..* -->
+        <path d="M79 220 L79 488" fill="none" stroke="#888" stroke-width="1" marker-end="url(#arr)"/>
+        <text x="84" y="355" font-size="11" fill="#555" font-family="Segoe UI,sans-serif">col_rrrFuente</text>
+        <text x="84" y="234" font-size="11" fill="#333" font-weight="600" font-family="Segoe UI,sans-serif">1..*</text>
+        <text x="84" y="478" font-size="11" fill="#333" font-weight="600" font-family="Segoe UI,sans-serif">0..*</text>
+
+        <!-- col_baunitFuente: UAB 0..* —— FuenteEspacial 0..* -->
+        <path d="M296 411 L296 488" fill="none" stroke="#888" stroke-width="1" stroke-dasharray="5 3" marker-end="url(#arr)"/>
+        <text x="300" y="452" font-size="11" fill="#555" font-family="Segoe UI,sans-serif">col_baunitFuente</text>
+        <text x="300" y="424" font-size="11" fill="#333" font-weight="600" font-family="Segoe UI,sans-serif">0..*</text>
+        <text x="300" y="479" font-size="11" fill="#333" font-weight="600" font-family="Segoe UI,sans-serif">0..*</text>
+
+        <!-- col_rrrInteresado: RRR 0..* —— Municipio 0..1 -->
+        <path d="M366 220 L462 488" fill="none" stroke="#888" stroke-width="1" stroke-dasharray="5 3" marker-end="url(#arr)"/>
+        <text x="418" y="358" font-size="11" fill="#555" font-family="Segoe UI,sans-serif">col_rrrInteresado</text>
+        <text x="370" y="234" font-size="11" fill="#333" font-weight="600" font-family="Segoe UI,sans-serif">0..*</text>
+        <text x="454" y="479" font-size="11" fill="#333" font-weight="600" font-family="Segoe UI,sans-serif">0..1</text>
+
+        <!-- ── LEYENDA ── -->
+        <rect x="24" y="628" width="632" height="76" rx="6" fill="none" stroke="#ccc" stroke-width="0.5" stroke-dasharray="3 3"/>
+        <text x="36" y="646" font-size="11" font-weight="600" fill="#444" font-family="Segoe UI,sans-serif">Leyenda</text>
+        <line x1="36" y1="664" x2="80" y2="664" stroke="#bbb" stroke-width="0.8" stroke-dasharray="4 3"/>
+        <text x="86" y="668" font-size="11" fill="#555" font-family="Segoe UI,sans-serif">Herencia (EXTENDS en .ili)</text>
+        <line x1="36" y1="686" x2="80" y2="686" stroke="#888" stroke-width="1" marker-end="url(#arr)"/>
+        <text x="86" y="690" font-size="11" fill="#555" font-family="Segoe UI,sans-serif">Asociación obligatoria</text>
+        <line x1="260" y1="664" x2="304" y2="664" stroke="#888" stroke-width="1" stroke-dasharray="5 3" marker-end="url(#arr)"/>
+        <text x="310" y="668" font-size="11" fill="#555" font-family="Segoe UI,sans-serif">Asociación opcional</text>
+        <rect x="260" y="678" width="12" height="12" rx="2" fill="#ddeaf7" stroke="#2c6fad" stroke-width="0.8"/>
+        <text x="278" y="688" font-size="11" fill="#555" font-family="Segoe UI,sans-serif">Derecho</text>
+        <rect x="350" y="678" width="12" height="12" rx="2" fill="#faebd4" stroke="#c07a10" stroke-width="0.8"/>
+        <text x="368" y="688" font-size="11" fill="#555" font-family="Segoe UI,sans-serif">Restricción</text>
+        <rect x="450" y="678" width="12" height="12" rx="2" fill="#d4f0e6" stroke="#1a9068" stroke-width="0.8"/>
+        <text x="468" y="688" font-size="11" fill="#555" font-family="Segoe UI,sans-serif">Responsabilidad</text>
+
+        <!-- Nota MANDATORY CONSTRAINT -->
+        <text x="340" y="712" text-anchor="middle" font-size="10" fill="#999" font-family="Segoe UI,sans-serif">Todas las UAB tienen: MANDATORY CONSTRAINT Tipo == #Vivienda_Ciudad_Territorio</text>
+      </svg>
+    </div>
+
+    <div class="tip-box">
+      <strong>Regla crítica para el SIG — col_rrrFuente es 1..*</strong>
+      La cardinalidad <code>1..*</code> en la asociación <code>col_rrrFuente</code> significa que todo RRR (Derecho, Restricción o Responsabilidad) debe tener <strong>al menos una POT_FuenteAdministrativa</strong> vinculada. Sin ella, el validador ili2db rechaza la carga. Este es el error más frecuente en entregas de temáticos.
+    </div>
+
+    <div class="warn-box">
+      <strong>col_baunitRrr es 1..* (no 0..*)</strong>
+      Cada UAB debe tener mínimo un RRR asociado. Una capa temática sin ningún derecho, restricción ni responsabilidad documentado <strong>no es una entrega válida al modelo LADM</strong>. El temático debe diligenciar al menos una ficha RRR por cada clase UAB que entregue.
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════
+       SECCIÓN 8 — DOMINIOS COMPLETOS
+  ══════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">Sección 8 — Referencia rápida</div>
+    <div class="section-title">Dominios completos del modelo — valores válidos</div>
+    <p class="section-intro">Tablas de consulta directa para el temático y el SIG de apoyo. Todos los valores están extraídos literalmente del archivo <code>LADM_COL_v_2_0_0_Ext_POT.ili</code>. El campo <em>Valor en modelo</em> es el que se ingresa en la base de datos; el <em>Nombre legible</em> es el <code>dispName</code> que muestra la interfaz.</p>
+
+    <!-- ── D1: FENÓMENO AMENAZA ── -->
+    <h3 style="font-size:14px;font-weight:700;color:#0f2b4a;margin:1.25rem 0 0.6rem;padding-left:0.75rem;border-left:4px solid #b03a1a;">POT_FenomenoAmenazaTipo — usado en ZonificacionAmenaza, AreaCondicionAmenaza y AreaCondicionRiesgo</h3>
+    <table class="ex-table">
+      <thead><tr><th>#</th><th>Valor en modelo</th><th>Nombre legible</th><th>Aplica en Popayán</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><code>Movimientos_En_Masa</code></td><td>Movimientos en masa</td><td><span class="badge" style="background:#f8ddd5;color:#7a2510">&#10003; Alta relevancia</span></td></tr>
+        <tr><td>2</td><td><code>Avenida_Torrencial</code></td><td>Avenida torrencial</td><td><span class="badge" style="background:#f8ddd5;color:#7a2510">&#10003; Alta relevancia</span></td></tr>
+        <tr><td>3</td><td><code>Inundacion</code></td><td>Inundación</td><td><span class="badge" style="background:#f8ddd5;color:#7a2510">&#10003; Alta relevancia</span></td></tr>
+        <tr><td>4</td><td><code>Incendios_Forestales</code></td><td>Incendios forestales</td><td><span class="badge" style="background:#faebd4;color:#7a4b08">Media</span></td></tr>
+        <tr><td>5</td><td><code>Tsunami</code></td><td>Tsunami</td><td><span class="badge" style="background:#f0ede8;color:#555">No aplica</span></td></tr>
+        <tr><td>6</td><td><code>Volcanico</code></td><td>Volcánico</td><td><span class="badge" style="background:#f8ddd5;color:#7a2510">&#10003; Alta relevancia (Puracé)</span></td></tr>
+        <tr><td>7</td><td><code>Huracanes</code></td><td>Huracanes</td><td><span class="badge" style="background:#f0ede8;color:#555">No aplica</span></td></tr>
+        <tr><td>8</td><td><code>Sismica</code></td><td>Sísmica</td><td><span class="badge" style="background:#f8ddd5;color:#7a2510">&#10003; Alta relevancia</span></td></tr>
+        <tr><td>9</td><td><code>Erosion_Costera</code></td><td>Erosión costera</td><td><span class="badge" style="background:#f0ede8;color:#555">No aplica</span></td></tr>
+        <tr><td>10</td><td><code>Vendavales</code></td><td>Vendavales</td><td><span class="badge" style="background:#faebd4;color:#7a4b08">Media</span></td></tr>
+        <tr><td>11</td><td><code>Tecnologico</code></td><td>Tecnológico</td><td><span class="badge" style="background:#faebd4;color:#7a4b08">Media</span></td></tr>
+        <tr><td>12</td><td><code>Otro</code></td><td>Otro</td><td><span class="badge" style="background:#f0ede8;color:#555">Usar con descripción</span></td></tr>
+        <tr><td>13</td><td><code>Sin_Determinar</code></td><td>Sin determinar</td><td><span class="badge" style="background:#f0ede8;color:#555">Solo en estudios básicos</span></td></tr>
+      </tbody>
+    </table>
+
+    <!-- ── D2: CATEGORÍA AMENAZA ── -->
+    <h3 style="font-size:14px;font-weight:700;color:#0f2b4a;margin:1.5rem 0 0.6rem;padding-left:0.75rem;border-left:4px solid #b03a1a;">POT_CategoriaAmenazaTipo — categorización del nivel de amenaza (Dcto. 1077/2015)</h3>
+    <table class="ex-table">
+      <thead><tr><th>Valor en modelo</th><th>Nombre legible</th><th>Descripción</th></tr></thead>
+      <tbody>
+        <tr><td><code>Alta</code></td><td>Categoría alta</td><td>Exposición alta al peligro — condiciona fuertemente el uso del suelo</td></tr>
+        <tr><td><code>Media</code></td><td>Categoría media</td><td>Exposición media — requiere estudios detallados antes de cualquier intervención</td></tr>
+        <tr><td><code>Baja</code></td><td>Categoría baja</td><td>Exposición baja — puede urbanizarse con medidas de mitigación básicas</td></tr>
+      </tbody>
+    </table>
+
+    <!-- ── D3: MEDIDA INTERVENCIÓN ── -->
+    <h3 style="font-size:14px;font-weight:700;color:#0f2b4a;margin:1.5rem 0 0.6rem;padding-left:0.75rem;border-left:4px solid #c07a10;">POT_MedidaIntervencionTipo — campo obligatorio en AreaCondicionAmenaza y AreaCondicionRiesgo</h3>
+    <table class="ex-table">
+      <thead><tr><th>#</th><th>Valor en modelo</th><th>Nombre legible</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><code>Estudios_Detallados</code></td><td>Estudios detallados</td></tr>
+        <tr><td>2</td><td><code>Restriccion_O_Condicionamiento_Uso_Del_Suelo</code></td><td>Restricción o condicionamiento del uso del suelo</td></tr>
+        <tr><td>3</td><td><code>Monitoreo_Del_Riesgo</code></td><td>Monitoreo del riesgo</td></tr>
+        <tr><td>4</td><td><code>Sistema_De_Alerta_Temprana</code></td><td>Sistema de alerta temprana</td></tr>
+        <tr><td>5</td><td><code>Preparacion_Y_Respuesta</code></td><td>Preparación y respuesta</td></tr>
+        <tr><td>6</td><td><code>Estudios_Disenios_Y_Obras</code></td><td>Estudios, diseños y obras</td></tr>
+        <tr><td>7</td><td><code>Fortalecimiento_Institucional</code></td><td>Fortalecimiento institucional</td></tr>
+        <tr><td>8</td><td><code>Apropiacion_Comunitaria_De_La_Gestion_Del_Riesgo_De_Desastres</code></td><td>Apropiación comunitaria de la gestión del riesgo</td></tr>
+        <tr><td>9</td><td><code>Otro</code></td><td>Otro — requiere campo Detalle_Medida_Intervencion</td></tr>
+      </tbody>
+    </table>
+
+    <!-- ── D4: CATEGORÍA RURAL ── -->
+    <h3 style="font-size:14px;font-weight:700;color:#0f2b4a;margin:1.5rem 0 0.6rem;padding-left:0.75rem;border-left:4px solid #1a9068;">POT_CategoriaRuralTipo — jerarquía de categorías para ZonificacionSueloRural</h3>
+    <p class="section-intro" style="margin-bottom:0.75rem;">Este dominio tiene tres niveles jerárquicos. El nivel 3 (subsubcategoría) es el valor que se ingresa en el campo <code>Tipo_Categoria_Rural</code> de la UAB.</p>
+    <table class="ex-table">
+      <thead><tr><th>Nivel 1</th><th>Nivel 2</th><th>Valor en modelo (nivel 3)</th><th>Norma base</th></tr></thead>
+      <tbody>
+        <tr>
+          <td rowspan="3" style="font-weight:600;color:#3a5a0a;background:#eaf3de;">Suelo rural productivo</td>
+          <td>—</td><td><code>Suelo_Rural_Productivo.Agropecuario</code></td><td>Dcto. 1077/2015</td>
+        </tr>
+        <tr><td>—</td><td><code>Suelo_Rural_Productivo.Forestal</code></td><td>Dcto. 1077/2015</td></tr>
+        <tr><td>—</td><td><code>Suelo_Rural_Productivo.Mineria_Hidrocarburos</code></td><td>Dcto. 1077/2015</td></tr>
+        <tr>
+          <td rowspan="5" style="font-weight:600;color:#7a4b08;background:#faebd4;">Desarrollo restringido</td>
+          <td>—</td><td><code>Desarrollo_Restringido.Suburbano</code></td><td>Ley 388/97 Art. 34</td>
+        </tr>
+        <tr><td>—</td><td><code>Desarrollo_Restringido.Corredor_Vial_Suburbano</code></td><td>Dcto. 3600/2007</td></tr>
+        <tr><td>—</td><td><code>Desarrollo_Restringido.Centro_Poblado_Rural</code></td><td>Ley 505/99</td></tr>
+        <tr><td>—</td><td><code>Desarrollo_Restringido.Vivienda_Campestre</code></td><td>Dcto. 3600/2007</td></tr>
+        <tr><td>—</td><td><code>Desarrollo_Restringido.Equipamento</code></td><td>Dcto. 3600/2007 Art. 5 Num. 4</td></tr>
+        <tr>
+          <td rowspan="8" style="font-weight:600;color:#0d5c42;background:#d4f0e6;">Protección suelo rural</td>
+          <td>Conservación y protección ambiental</td><td><code>Conservacion_Proteccion_Ambiental.Areas_SINAP</code></td><td>Dcto. 2372/2010</td>
+        </tr>
+        <tr><td>Conservación y protección ambiental</td><td><code>Conservacion_Proteccion_Ambiental.Areas_Reserva_Forestal</code></td><td>Ley 2a/1959</td></tr>
+        <tr><td>Conservación y protección ambiental</td><td><code>Conservacion_Proteccion_Ambiental.Areas_Manejo_Especial</code></td><td>Dcto. 2372/2010</td></tr>
+        <tr><td>Conservación y protección ambiental</td><td><code>Conservacion_Proteccion_Ambiental.Areas_Importancia_Ecosistemica</code></td><td>Dcto. 3600/2007</td></tr>
+        <tr><td>—</td><td><code>Produccion_Agropecuaria_Explotacion_RRNN</code></td><td>Dcto. 3600/2007 Art. 4 Num. 2</td></tr>
+        <tr><td>—</td><td><code>Sistema_Servicios_Publicos</code></td><td>Dcto. 1077/2015</td></tr>
+        <tr><td>—</td><td><code>Amenaza_Y_Riesgo_No_Mitigable</code></td><td>Ley 388/97 + UNGRD</td></tr>
+        <tr><td>—</td><td><code>Patrimonio_Cultural</code></td><td>Dcto. 3600/2007 Art. 4 + Ley 1185/2008</td></tr>
+      </tbody>
+    </table>
+
+    <!-- ── D5: SISTEMAS GENERALES ── -->
+    <h3 style="font-size:14px;font-weight:700;color:#0f2b4a;margin:1.5rem 0 0.6rem;padding-left:0.75rem;border-left:4px solid #5c42cc;">POT_SistemasGeneralesTipo — valores para UAB_SistemasGenerales (dimensión Funcional)</h3>
+    <table class="ex-table">
+      <thead><tr><th>Grupo</th><th>Subgrupo / Valor en modelo</th><th>Geometría típica</th></tr></thead>
+      <tbody>
+        <tr><td rowspan="10" style="font-weight:600;background:#eaf3de;color:#27500a;">Equipamientos</td><td><code>Equipamientos.Educacion</code></td><td>Polígono</td></tr>
+        <tr><td><code>Equipamientos.Cultura</code></td><td>Polígono</td></tr>
+        <tr><td><code>Equipamientos.Salud</code></td><td>Polígono</td></tr>
+        <tr><td><code>Equipamientos.Bienestar_Social</code></td><td>Polígono</td></tr>
+        <tr><td><code>Equipamientos.Culto</code></td><td>Polígono</td></tr>
+        <tr><td><code>Equipamientos.Deportivo_Recreativo</code></td><td>Polígono</td></tr>
+        <tr><td><code>Equipamientos.Seguridad_Ciudadana</code></td><td>Polígono</td></tr>
+        <tr><td><code>Equipamientos.Defensa_Justicia</code></td><td>Polígono</td></tr>
+        <tr><td><code>Equipamientos.Abastecimiento</code></td><td>Polígono</td></tr>
+        <tr><td><code>Equipamientos.Servicios_Administracion_Publica</code></td><td>Polígono</td></tr>
+        <tr><td rowspan="2" style="font-weight:600;background:#e8e4f8;color:#3a2888;">Espacio Público</td><td><code>Espacio_Publico.Elemento_Constitutivo</code></td><td>Polígono</td></tr>
+        <tr><td><code>Espacio_Publico.Elemento_Complementario</code></td><td>Polígono / Punto</td></tr>
+        <tr><td rowspan="7" style="font-weight:600;background:#ddeaf7;color:#1a4d80;">Servicios Públicos</td><td><code>Servicios_Publicos.Acueducto</code></td><td>Línea / Punto</td></tr>
+        <tr><td><code>Servicios_Publicos.Alcantarillado</code></td><td>Línea</td></tr>
+        <tr><td><code>Servicios_Publicos.Gas</code></td><td>Línea</td></tr>
+        <tr><td><code>Servicios_Publicos.Energia</code></td><td>Línea / Punto</td></tr>
+        <tr><td><code>Servicios_Publicos.Telecomunicaciones</code></td><td>Línea / Punto</td></tr>
+        <tr><td><code>Servicios_Publicos.Disposicion_Final_Residuos</code></td><td>Polígono</td></tr>
+        <tr><td><code>Servicios_Publicos.Relleno_Sanitario</code></td><td>Polígono</td></tr>
+        <tr><td rowspan="7" style="font-weight:600;background:#faebd4;color:#7a4b08;">Vías</td><td><code>Vias.Rural.Vias_Primer_Orden</code></td><td>Línea</td></tr>
+        <tr><td><code>Vias.Rural.Vias_Segundo_Orden</code></td><td>Línea</td></tr>
+        <tr><td><code>Vias.Rural.Vias_Tercer_Orden</code></td><td>Línea</td></tr>
+        <tr><td><code>Vias.Urbano.Principal</code></td><td>Línea</td></tr>
+        <tr><td><code>Vias.Urbano.Secundaria</code></td><td>Línea</td></tr>
+        <tr><td><code>Vias.Urbano.Local</code></td><td>Línea</td></tr>
+        <tr><td><code>Vias.Urbano.Cicloruta</code></td><td>Línea</td></tr>
+        <tr><td rowspan="2" style="font-weight:600;background:#f0ede8;color:#444;">Infraestructura transporte</td><td><code>Infraestructura_Transporte.Terrestre</code></td><td>Polígono / Línea</td></tr>
+        <tr><td><code>Infraestructura_Transporte.Aereo</code></td><td>Polígono</td></tr>
+      </tbody>
+    </table>
+
+    <!-- ── D6: TRATAMIENTO URBANÍSTICO ── -->
+    <h3 style="font-size:14px;font-weight:700;color:#0f2b4a;margin:1.5rem 0 0.6rem;padding-left:0.75rem;border-left:4px solid #c07a10;">POT_TratamientoUrbanisticoTipo — para UAB_TratamientoUrbanistico (suelo urbano y expansión)</h3>
+    <table class="ex-table">
+      <thead><tr><th>Valor en modelo</th><th>Nombre legible</th><th>Descripción breve</th></tr></thead>
+      <tbody>
+        <tr><td><code>Desarrollo</code></td><td>Desarrollo</td><td>Suelo sin urbanizar apto para nuevos proyectos — requiere plan parcial</td></tr>
+        <tr><td><code>Consolidacion</code></td><td>Consolidación</td><td>Zonas urbanizadas con buenas condiciones — se optimiza sin cambio estructural</td></tr>
+        <tr><td><code>Renovacion_Urbana.Reactivacion</code></td><td>Renovación urbana – Reactivación</td><td>Zonas deterioradas que se reactivan sin demolición masiva</td></tr>
+        <tr><td><code>Renovacion_Urbana.Redesarrollo</code></td><td>Renovación urbana – Redesarrollo</td><td>Zonas con demolición y reconstrucción integral</td></tr>
+        <tr><td><code>Renovacion_Urbana.Revitalizacion</code></td><td>Renovación urbana – Revitalización</td><td>Recuperación de centralidades o corredores urbanos</td></tr>
+        <tr><td><code>Conservacion</code></td><td>Conservación</td><td>Zonas de patrimonio arquitectónico o ambiental — intervención restringida</td></tr>
+        <tr><td><code>Mejoramiento_Integral</code></td><td>Mejoramiento integral</td><td>Asentamientos informales legalizables — mejora de condiciones físicas</td></tr>
+      </tbody>
+    </table>
+
+    <!-- ── D7: SUELO PROTECCIÓN URBANO ── -->
+    <h3 style="font-size:14px;font-weight:700;color:#0f2b4a;margin:1.5rem 0 0.6rem;padding-left:0.75rem;border-left:4px solid #1a9068;">POT_SueloProteccionUrbanoTipo — para UAB_SueloProteccionUrbano</h3>
+    <table class="ex-table">
+      <thead><tr><th>Valor en modelo</th><th>Nombre legible</th><th>Ejemplo Popayán</th></tr></thead>
+      <tbody>
+        <tr><td><code>Ambiental</code></td><td>Ambiental</td><td>Rondas hídricas, cerros tutelares, humedales</td></tr>
+        <tr><td><code>Infraestructura</code></td><td>Infraestructura</td><td>Fajas de reserva vial, corredores de servicios públicos</td></tr>
+        <tr><td><code>Servicios_Publicos</code></td><td>Servicios públicos</td><td>Plantas de tratamiento, depósitos de agua</td></tr>
+        <tr><td><code>Patrimonio</code></td><td>Patrimonio</td><td>Centro histórico, bienes de interés cultural</td></tr>
+        <tr><td><code>Riesgo_No_Mitigable</code></td><td>Riesgo no mitigable</td><td>Zonas de amenaza alta sin posibilidad de reducción</td></tr>
+        <tr><td><code>Otro</code></td><td>Otro</td><td>Requiere campo Detalle_Uso_Principal obligatorio</td></tr>
+      </tbody>
+    </table>
+
+    <!-- ── D8: PRIORIZACIÓN + POT TIPO ── -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.25rem;">
+      <div>
+        <h3 style="font-size:13px;font-weight:700;color:#0f2b4a;margin-bottom:0.5rem;">POT_PriorizacionTipo</h3>
+        <table class="ex-table">
+          <thead><tr><th>Valor</th><th>Descripción</th></tr></thead>
+          <tbody>
+            <tr><td><code>Corto_Plazo</code></td><td>0–4 años (vigencia corto plazo POT)</td></tr>
+            <tr><td><code>Mediano_Plazo</code></td><td>4–8 años</td></tr>
+            <tr><td><code>Largo_Plazo</code></td><td>8–12 años</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h3 style="font-size:13px;font-weight:700;color:#0f2b4a;margin-bottom:0.5rem;">POT_PlanOrdenamientoTerritorialTipo</h3>
+        <table class="ex-table">
+          <thead><tr><th>Valor</th><th>Aplica a</th></tr></thead>
+          <tbody>
+            <tr><td><code>POT</code></td><td>Municipios &gt;100 000 hab.</td></tr>
+            <tr><td><code>PBOT</code></td><td>Municipios 30 000–100 000 hab.</td></tr>
+            <tr><td><code>EOT</code></td><td>Municipios &lt;30 000 hab.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="tip-box" style="margin-top:1.25rem;">
+      <strong>Nota para el SIG de apoyo — validación de dominios</strong>
+      Todos los valores de estas tablas son los únicos aceptados por el validador <code>ili2db</code>. Cualquier valor diferente (incluyendo variantes de capitalización, tildes adicionales o abreviaciones) genera error de carga. Se recomienda usar listas desplegables en las fichas de Excel o en la GDB para evitar errores de tipeo.
+    </div>
+  </div>
+
+  <!-- PRÓXIMOS PASOS -->
+  <div class="section">
+    <div class="section-label">Pendiente — próximas versiones</div>
+    <div class="section-title">Elementos a incorporar en versiones siguientes</div>
+    <ul style="padding-left:1.25rem; color:#555; font-size:13px; line-height:2.2;">
+      <li><strong>&#10003; Diagrama UML con cardinalidades reales</strong> — incorporado en Sección 7</li>
+      <li><strong>Ejemplos visuales</strong> de geometrías correctas vs. incorrectas por tipo de RRR (ilustraciones de campo WBG — pendiente aporte Ing. Dueñas)</li>
+      <li><strong>Capturas del modelo intermedio</strong> — cómo se ve la carga en la GDB / PostGIS (<code>col_baunitRrr</code>, <code>col_rrrFuente</code>, <code>col_rrrInteresado</code>)</li>
+      <li><strong>Lista de errores frecuentes</strong> detectados en la verificación SIG (topología, vacíos de atributo, superposiciones)</li>
+      <li><strong>Tablas de dominios completos</strong> — valores válidos de <code>POT_FenomenoAmenazaTipo</code>, <code>POT_MedidaIntervencionTipo</code> y <code>POT_CategoriaRuralTipo</code> para consulta rápida</li>
+    </ul>
+  </div>
+
+  <div class="doc-footer">
+    <span>Guía RRR LADM-COL POT · Municipio de Popayán, Cauca · Borrador v1 – 2025</span>
+    <span>Coordinación técnica: Ing. Juan Carlos Dueñas Ramírez</span>
+  </div>
+
+</div>
+</body>
+</html>
